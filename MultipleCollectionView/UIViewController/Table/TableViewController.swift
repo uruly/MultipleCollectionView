@@ -17,6 +17,7 @@ final class TableViewController: UIViewController {
             tableView.dataSource = self
         }
     }
+    @IBOutlet weak var tableViewConstraintHeight: NSLayoutConstraint!
 
     private let reuseIdentifier = "cell"
     private var data: [String] = []
@@ -25,6 +26,16 @@ final class TableViewController: UIViewController {
         super.viewDidLoad()
 
         data = Array(repeating: "hoge", count: 20)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Set tableView height to content size height.
+        tableView.layoutIfNeeded()
+        tableViewConstraintHeight.constant = tableView.contentSize.height
+        view.layoutIfNeeded()
+        view.frame.size.height = tableView.contentSize.height
     }
 }
 
