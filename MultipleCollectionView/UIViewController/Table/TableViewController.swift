@@ -8,23 +8,42 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+final class TableViewController: UIViewController {
+
+    private let reuseIdentifier = "cell"
+
+    private var data: [String] = []
+
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        data = Array(repeating: "hoge", count: 20)
+    }
+}
+
+// MARK: - TableViewDelegate
+
+extension TableViewController: UITableViewDelegate {}
+
+// MARK: - UITableViewDataSource
+
+extension TableViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        cell.textLabel?.text = data[indexPath.row]
+        return cell
     }
-    */
-
 }
