@@ -17,6 +17,7 @@ final class CollectionViewController: UIViewController {
             collectionView.dataSource = self
         }
     }
+    @IBOutlet private weak var collectionViewConstraintHeight: NSLayoutConstraint!
 
     private let reuseIdentifier = "collectionViewCell"
     private var colors: [UIColor] = []
@@ -32,6 +33,15 @@ final class CollectionViewController: UIViewController {
                 alpha: 1
             )
             colors.append(randomColor)
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
+            view.layoutIfNeeded()
+            view.frame.size.height = layout.collectionViewContentSize.height
         }
     }
 }
