@@ -38,6 +38,8 @@ final class CollectionViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        // Set collectionView height to content size height.
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
             view.layoutIfNeeded()
