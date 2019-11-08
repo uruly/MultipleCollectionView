@@ -10,17 +10,16 @@ import UIKit
 
 final class TableViewController: UIViewController {
 
-    private let reuseIdentifier = "cell"
-
-    private var data: [String] = []
-
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
             tableView.delegate = self
             tableView.dataSource = self
         }
     }
+
+    private let reuseIdentifier = "cell"
+    private var data: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
