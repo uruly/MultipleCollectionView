@@ -10,21 +10,25 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
+    @IBOutlet private weak var stackView: UIStackView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupChildren()
     }
 
+    private func setupChildren() {
+        // CollectionViewController
+        let collectionViewController = CollectionViewController()
+        addChild(collectionViewController)
+        stackView.addArrangedSubview(collectionViewController.view)
+        collectionViewController.didMove(toParent: self)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // TableViewController
+        let tableViewController = TableViewController()
+        addChild(tableViewController)
+        stackView.addArrangedSubview(tableViewController.view)
+        tableViewController.didMove(toParent: self)
     }
-    */
 
 }
