@@ -16,6 +16,6 @@ This is sample to set multiple UICollectionView or UITableView in UIViewControll
 
 ### Description
 
-I wrote this details on my blod.
+I wrote this details on my blog.
 https://uruly.xyz/multiple-collection-table-view/
 
